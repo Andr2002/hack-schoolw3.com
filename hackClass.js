@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { answersJS, answersHTML } from './answers.js';
+import { answersHTML, answersCSS, answersJS } from './answers.js';
 
 export class hack {
 
