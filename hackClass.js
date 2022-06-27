@@ -85,4 +85,81 @@ export class hack {
 
         return result;
     }
+    
+    async CSS() {
+        const browser = await puppeteer.launch({
+            headless: true,
+            // args: [
+            //     '--disable-site-isolation-trials'
+            // ]
+        });
+
+        const page = await browser.newPage();
+
+        await page.setViewport({
+            height: 1000,
+            width: 1050,
+        });
+
+        await page.goto('https://schoolsw3.com/quiztest/quiztest_CSS.php');
+
+        await page.waitForSelector('div.w3-half:nth-child(2) > input:nth-child(1)').then(() => {
+            // console.log('Найден input ввода имени');
+        });
+        await page.type('div.w3-half:nth-child(2) > input:nth-child(1)', 'inst: the_andr_').then(() => {
+            // console.log('Имя введено');
+        });
+
+        await page.waitForSelector('div.w3-half:nth-child(5) > input:nth-child(1)').then(() => {
+            // console.log('Найден input ввода e-mail');
+        });
+        await page.type('div.w3-half:nth-child(5) > input:nth-child(1)', 'sleek.2000@bk.ru').then(() => {
+            // console.log('E-mail введен');
+        });
+
+        await page.waitForSelector('button.w3-button:nth-child(6)').then(() => {
+            // console.log('Найдена кнопка начала тестирования (черная)');
+        });
+        await page.click('button.w3-button:nth-child(6)').then(() => {
+            // console.log('Нажата кнопка (черная)');
+        });
+
+        await page.waitForSelector('#quizmain > div > a').then(() => {
+            // console.log('Найдена кнопка начала тестирования (зеленая)');
+        });
+        await page.click('#quizmain > div > a').then(() => {
+            // console.log('Нажата кнопка (зеленая)');
+        });
+
+        for (let i in answersCSS) {
+            // console.log(`Вопрос ${Number(i) + 1}`);
+            await page.waitForSelector('#quizcontainer > form:nth-child(2)').then(() => {
+                // console.log('Найдена форма вопросов');
+            });
+            await page.click(`label[for="${answersCSS[i]}"]`).then(() => {
+                // console.log('Нажат ответ на вопрос (for="' + answersCSS[i] + '")');
+            });
+            await page.click('.answerbutton').then(() => {
+                // console.log('Нажата кнопка ответа на вопрос');
+            });
+        }
+
+        await page.waitForTimeout(2000);
+
+        let result = await page.evaluate(() => {
+            let time = document.querySelector('#quizmain > div:nth-child(1) > p:nth-child(3)').textContent;
+            let points = document.querySelector('#quizmain > div > h4').textContent.split('\n').slice(-1).toString();
+
+            const data = {
+                time: time,
+                points: points
+            };
+
+            return data;
+        });
+
+        await browser.close();
+
+        return result;
+    }
 }
