@@ -1,0 +1,15 @@
+{
+    "name": "hack-schoolsw3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "hack.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "puppeteer": "^14.4.1"
+    },
+    "type": "module"
+}
