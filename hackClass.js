@@ -23,7 +23,7 @@ export class hack {
         await page.click('#quizmain > div > a');
 
         //  проходим циклом по всем вопросам и отвечаем, исходя из свойств объекта, заранее инициализированного ответами 
-        for (let i = 0; i < Object.keys(answersJS).length; i++) {
+        for (let i in answersJS) {
             await page.waitForSelector('#quizcontainer > form:nth-child(2)');
             await page.click(`label[for="${answersJS[i]}"]`);
             await page.click('.answerbutton');
@@ -68,7 +68,7 @@ export class hack {
         await page.waitForSelector('#quizcontainer > div > a');
         await page.click('#quizcontainer > div > a');
 
-        for (let i = 0; i < Object.keys(answersHTML).length; i++) {
+        for (let i in answersHTML) {
             await page.waitForSelector('#altcontainer');
             await page.click(`label[for="${answersHTML[i]}"]`);
             await page.click('.answerbutton');
@@ -87,12 +87,7 @@ export class hack {
     }
     
     async CSS() {
-        const browser = await puppeteer.launch({
-            headless: true,
-            // args: [
-            //     '--disable-site-isolation-trials'
-            // ]
-        });
+        const browser = await puppeteer.launch({headless: true});
 
         const page = await browser.newPage();
 
@@ -103,45 +98,22 @@ export class hack {
 
         await page.goto('https://schoolsw3.com/quiztest/quiztest_CSS.php');
 
-        await page.waitForSelector('div.w3-half:nth-child(2) > input:nth-child(1)').then(() => {
-            // console.log('Найден input ввода имени');
-        });
-        await page.type('div.w3-half:nth-child(2) > input:nth-child(1)', 'inst: the_andr_').then(() => {
-            // console.log('Имя введено');
-        });
+        await page.waitForSelector('div.w3-half:nth-child(2) > input:nth-child(1)');
+        await page.type('div.w3-half:nth-child(2) > input:nth-child(1)', 'inst: the_andr_');
 
-        await page.waitForSelector('div.w3-half:nth-child(5) > input:nth-child(1)').then(() => {
-            // console.log('Найден input ввода e-mail');
-        });
-        await page.type('div.w3-half:nth-child(5) > input:nth-child(1)', 'sleek.2000@bk.ru').then(() => {
-            // console.log('E-mail введен');
-        });
+        await page.waitForSelector('div.w3-half:nth-child(5) > input:nth-child(1)');
+        await page.type('div.w3-half:nth-child(5) > input:nth-child(1)', 'sleek.2000@bk.ru');
 
-        await page.waitForSelector('button.w3-button:nth-child(6)').then(() => {
-            // console.log('Найдена кнопка начала тестирования (черная)');
-        });
-        await page.click('button.w3-button:nth-child(6)').then(() => {
-            // console.log('Нажата кнопка (черная)');
-        });
+        await page.waitForSelector('button.w3-button:nth-child(6)');
+        await page.click('button.w3-button:nth-child(6)');
 
-        await page.waitForSelector('#quizmain > div > a').then(() => {
-            // console.log('Найдена кнопка начала тестирования (зеленая)');
-        });
-        await page.click('#quizmain > div > a').then(() => {
-            // console.log('Нажата кнопка (зеленая)');
-        });
+        await page.waitForSelector('#quizmain > div > a');
+        await page.click('#quizmain > div > a');
 
         for (let i in answersCSS) {
-            // console.log(`Вопрос ${Number(i) + 1}`);
-            await page.waitForSelector('#quizcontainer > form:nth-child(2)').then(() => {
-                // console.log('Найдена форма вопросов');
-            });
-            await page.click(`label[for="${answersCSS[i]}"]`).then(() => {
-                // console.log('Нажат ответ на вопрос (for="' + answersCSS[i] + '")');
-            });
-            await page.click('.answerbutton').then(() => {
-                // console.log('Нажата кнопка ответа на вопрос');
-            });
+            await page.waitForSelector('#quizcontainer > form:nth-child(2)');
+            await page.click(`label[for="${answersCSS[i]}"]`);
+            await page.click('.answerbutton');
         }
 
         await page.waitForTimeout(2000);
