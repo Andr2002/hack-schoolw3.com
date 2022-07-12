@@ -2,16 +2,7 @@ import { hack } from './hackClass.js';
 
 const hacks = new hack();
 
-//  puppeteer уебан косожопый какой-то 
-//  каждый раз разные ошибки выкидывает
-//  если за ним понаблюдать, то можно увидеть как он сам по себе живет
-//  это ебать не библиотека, какой-то искуственный интеллект
-//  только тупой пиздец...
-
-//  поэтому въебал цикл
-while (true) {
-    await executeCSS();
-}
+// await executeCSS();
 
 // await executeHTML();
 
@@ -23,10 +14,10 @@ async function executeHTML() {
     await hacks.HTML()
         .then((res) => {
             console.log('Время в секундах: ' + res);
-            console.log('\nStatus: заебись\n');
+            console.log('\nStatus: ok\n');
         })
         .catch((err) => {
-            console.log('\nStatus: хуйня полная\n');
+            console.log('\nStatus: bad\n');
             // console.error(err);
         });
 }
@@ -40,7 +31,7 @@ async function executeCSS() {
         })
         .catch((err) => {
             // console.log(err);
-            console.log('Все хуйня, давай по новой');
+            console.log('error');
         });
 }
 
