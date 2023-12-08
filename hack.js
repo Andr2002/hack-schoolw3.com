@@ -13,12 +13,10 @@ async function executeHTML() {
 
     await hacks.HTML()
         .then((res) => {
-            console.log('Время в секундах: ' + res);
-            console.log('\nStatus: ok\n');
+            console.log(res.points);
         })
         .catch((err) => {
-            console.log('\nStatus: bad\n');
-            // console.error(err);
+            console.log('[executeHTML] error in: ' + err.message);
         });
 }
 
@@ -30,8 +28,7 @@ async function executeCSS() {
             console.log(`${res.time}\n${res.points}`);
         })
         .catch((err) => {
-            // console.log(err);
-            console.log('error');
+            console.log('[executeCSS] error in: ' + err.message);
         });
 }
 
@@ -43,6 +40,6 @@ async function executeJS() {
             console.log(`${res.time}\n${res.points}`);
         })
         .catch((err) => {
-            console.log(err);
+            console.log('[executeJS] error in: ' + err.message);
         });
 }
